@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./background.css">
+</head>
+<body>
+    <div class="background">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+     </div>
+    <div class="container">
+        <marquee  behavior="alternate" direction="right">YOUR FAVOURITE WORD-GUESSING GAME</marquee> 
+        <!-- <marquee  behavior="alternate" direction="right" bgcolor="indigo" style="border:3px solid red" width="500px" height="250px">YOUR FAVOURITE WORD-GUESSING GAME</marquee>  -->
+
+        <h1>Make a wild guess</h1>
+        <div class="content">
+            <input type="text" class="inp" maxlength="1" >
+            <div class="inputs"></div>
+            <div class="details">
+                <p class="hint">Hint: <span></span></p>
+                <p class="guess">Guesses left: <span></span></p>
+                <p class="wrong">Wrong letters: <span></span></p>
+            </div>
+            <div class="score">Score: <span id="scoreValue">0</span></div>
+            <button class="resetBtn">Reset Game</button>
+
+            <p class="dev">Heritagify</p>
+        </div>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <p id="modalText"></p>
+              <!-- <button id="modalButton">OK</button> -->
+            </div>
+          </div>
+    </div>
+    
+</body>
+</html>
+<script src="guessedWord.js"></script>
+<script src="script.js"></script>
