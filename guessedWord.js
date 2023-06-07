@@ -18,7 +18,7 @@ let wordArray=[
         hint: 'the sovereign one'
     },
     {
-        word: 'Island',
+        word: 'island',
         hint: 'land surrounded by water'
     },
     {

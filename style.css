@@ -25,10 +25,12 @@ body{
 marquee{
   margin: 16px 0;
   padding: 1rem;
-  font-size: 18px;
+  font-size: 25px;
   font-weight: 600;
   color: rgb(121, 9, 9);
   background-color: cadetblue;
+  text-align: center;
+  line-height: 25px;
 }
 .container h1{
   font-size: 25px;
@@ -106,41 +108,14 @@ marquee{
   text-transform: uppercase;
 }
 
-@media screen and (max-width:460px) {
-  .container{
-    width: 100%;
-    box-shadow: 4px 4px 51px rgb(60, 60, 180);
-  }
-  marquee{
-    font-size: 10px;
-    letter-spacing: 1px;
-    font-weight: 800;
-  }
-  h1{
-    font-size: 22px;
-    padding: 16px 20px;
-  }
-  .content{
-    margin: 25px 20px 35px;
-  }
-  inputs input{
-    height: 51px;
-    width: 50px;
-    margin: 3px;
-    font-size: 22px;
-  }
-  .details p{
-    font-size: 15px;
-  }
-  .content .resetBtn{
-    padding: 14px 0;
-    font-size: 16px;
-  }
-  
-}
 .score{
-  font-size: 30px;
-  margin-bottom: 9px;
+  font-size: 35px;
+  margin: 0 0px 15px 80px;
+  box-shadow: 1px 2px 17px grey;
+  width: 11rem;
+  padding: .5rem;
+  border: nne;
+  outline: none;
 }
 
 /* Modal Styles */
@@ -208,3 +183,111 @@ marquee{
   /* ... existing container styles ... */
   position: relative; /* Ensure modal is positioned relative to the container */
 }
+
+  @media screen and (max-width:460px) {
+    .container{
+      width: 100%;
+      box-shadow: 4px 4px 51px rgb(60, 60, 180);
+    }
+    marquee{
+      font-size: 10px;
+      letter-spacing: 1px;
+      font-weight: 800;
+    }
+    h1{
+      font-size: 22px;
+      padding: 16px 20px;
+    }
+    .content{
+      margin: 25px 20px 35px;
+    }
+    inputs input{
+      height: 51px;
+      width: 50px;
+      margin: 3px;
+      font-size: 22px;
+    }
+    .details p{
+      font-size: 15px;
+    }
+    .content .resetBtn{
+      padding: 14px 0;
+      font-size: 16px;
+    }
+    
+  }
+
+  /* @media screen and (max-width: 350px){
+    .container{
+      max-width: 250px;
+    }
+    marquee{
+      margin: 16px 0;
+      padding: 1rem;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgb(121, 9, 9);
+      background-color: cadetblue;
+      text-align: center;
+      line-height: 15px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .container .content{
+      width: 200px;
+      margin: 2px;
+    }
+    .inputs input{
+      border: 1px solid green;
+      border-radius: 5px;
+      height: 37px;
+      width: 30px;
+      margin: 2px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      color: green;
+      background: none;
+      box-shadow: 4px -2px 2px #0b0b48;
+      text-transform: uppercase;
+    }
+    .score{
+      font-size: 25px;
+      margin: -10px 0 9px 60px;
+      color: green;
+      box-shadow: 1px 2px 7px grey;
+      width: 6rem;
+    }
+    .resetBtn{
+      border: none;
+      border-radius: 35px;
+      outline: none;
+      width: 60%;
+      padding: 9px 0;
+      color: #fff;
+      background: rgb(31, 31, 133);
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-left: 80px;
+    }
+
+    .modal-content{
+        border-radius: 15px;
+        background-color: rgb(25, 74, 68);
+        margin: 15% auto;
+        padding: 10px;
+        border: 1px solid #888;
+        width: 700px;
+        max-width: 80%;
+        font-size: 15px;
+        color: rgb(212, 212, 217);
+        text-align: center;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+}
+
+  } */

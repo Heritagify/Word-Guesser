@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 let inputs = document.querySelector('.inputs'),
     hint = document.querySelector('.hint span'),
     guess = document.querySelector('.guess span'),
@@ -15,57 +5,72 @@ let inputs = document.querySelector('.inputs'),
     resetBtn = document.querySelector('.resetBtn'),
     typingInput = document.querySelector(".inp");
 let remainingTime = 60;
+let scoreValue = document
 let score = 0;     // Initial score value
+
+let word = [];
+let maximumGuesses =0; 
+let incorrectAlphabets = [];
+let correctAlphabets = [];
+
+const resetGame = () => {
+    randomWord();
+    incorrectAlphabets = [];
+    correctAlphabets = [];
+    guess.innerText = maximumGuesses;
+    wrong.innerText = incorrectAlphabets.join("");
+  };
+  
+  const randomWord = ()=> {
+          let item = wordArray[Math.floor(Math.random()* wordArray.length)];
+          word = item.word;
+          maximumGuesses = word.length >= 5 ? 8 : 6;
+          // correctAlphabets =[]; incorrectAlphabets = [];
+          hint.innerText = item.hint;
+          guess.innerText = maximumGuesses;
+          wrong.innerText = incorrectAlphabets;
+  
+  
+          let html = "";
+          for(let i =0; i < word.length; i++){
+              html += `<input type="text" disabled>`;
+              inputs.innerHTML = html;
+          }
+  
+          remainingTime = 60; // Reset the remaining time for each new word
+          clearInterval(timerInterval); // Clear the previous timer interval (if any)
+          timerInterval = setInterval(updateRemainingTime, 1000); // Start the new timer interval
+      }
 
 
 // .......FOR THE MODAL
-let showModal = (text, callback) => {
-    let modal = document.getElementById("modal");
-    let modalText = document.getElementById("modalText");
-    let modalClose = document.querySelector(".close");
-
+    const showModalWordGuessed = (text, callback) => {
+    const modal = document.getElementById("modalWordGuessed");
+    const modalText = document.getElementById("modalWordGuessedText");
     modalText.textContent = text;
+
     modal.style.display = "block";
 
-    modalClose.onclick = () => {
-        modal.style.display = "none";
-        callback();
+    // When the user clicks on the modal close button
+    modal.getElementsByClassName("close")[0].onclick = () => {
+      modal.style.display = "none";
+      callback();
     };
+  };
 
-    window.onclick = (event) => {
-        if (event.target === modal) {
-            modal.style.display = "none";
-            callback();
-        }
+  const showModalTimeUp = (text, callback) => {
+    const modal = document.getElementById("modalTimeUp");
+    const modalText = document.getElementById("modalTimeUpText");
+    modalText.textContent = text;
+
+    modal.style.display = "block";
+
+    // When the user clicks on the modal close button
+    modal.getElementsByClassName("close")[0].onclick = () => {
+      modal.style.display = "none";
+      callback();
     };
-};
-
-    let word = [];
-    let maximumGuesses =0; 
-    let incorrectAlphabets = [];
-    let correctAlphabets = [];
-
-    randomWord = ()=> {
-        let item = wordArray[Math.floor(Math.random()* wordArray.length)];
-        word = item.word;
-        maximumGuesses = word.length >= 5 ? 8 : 6;
-        correctAlphabets =[]; incorrectAlphabets = [];
-        hint.innerText = item.hint;
-        guess.innerText = maximumGuesses;
-        wrong.innerText = incorrectAlphabets;
-
-
-        let html = "";
-        for(let i =0; i < word.length; i++){
-            html += `<input type="text" disabled>`;
-            inputs.innerHTML = html;
-        }
-
-        remainingTime = 60; // Reset the remaining time for each new word
-        clearInterval(timerInterval); // Clear the previous timer interval (if any)
-        timerInterval = setInterval(updateRemainingTime, 1000); // Start the new timer interval
-    }
-
+  };
     
     
     startGame = (param) => {
@@ -84,9 +89,12 @@ let showModal = (text, callback) => {
             }
         } else {
             maximumGuesses--;
-            incorrectAlphabets.push(`${note}`);
+            if (maximumGuesses < 0) {
+                maximumGuesses = 0; // Ensure the guess count doesn't go below 0
+              }
+              incorrectAlphabets.push(note);
         }
-        guess.innerText =maximumGuesses;
+        guess.innerText = maximumGuesses;
         wrong.innerText = incorrectAlphabets.join('');
     }
     typingInput.value = "";
@@ -94,22 +102,16 @@ let showModal = (text, callback) => {
 
     setTimeout(() => {
         if(correctAlphabets.length === word.length){
-            const modalText = `Congrats! You found the word ${word.toUpperCase()}`;
-                showModal(modalText, () => {
-                updateScore(); // Update the score
-                randomWord();
+            showModalWordGuessed(`Congrats! You found the word ${word.toUpperCase()}`, () => {
+                resetGame();
+                updateScore();
             });
-        } else if(maximumGuesses <1)
+        } 
+        else if(maximumGuesses ===0)
         {
-            const modalText = "Game over! You do not have any remaining guesses";
-                showModalTimeUp(modalText, () => {
-                randomWord();
-    });
-        }else {
-            // Game over due to time up
+            showModalTimeUp(`Game over! You do not have remaining guesses`, () => {
+                resetGame();
                 
-                    showModalTimeUp(modalText, () => {
-                    randomWord();
             });
         }
         
@@ -130,7 +132,7 @@ let timerInterval = setInterval(updateRemainingTime, 1000); // Update remaining 
 
 // to update the score............
 let updateScore = () => {
-    score++;
+    score ++;
     document.getElementById("scoreValue").textContent = score;
 };
 
